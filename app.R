@@ -2,7 +2,7 @@ library(shiny)
 library(shinyjs)
 library(httr)
 
-main_app <- "http://127.0.0.1:7008"
+main_app <- Sys.getenv("MAIN_SHINY_URL")
 
 ui <- fluidPage(
     useShinyjs(),
@@ -14,10 +14,9 @@ ui <- fluidPage(
                     window.addEventListener("message", function(event) {
                         // only accept messages from the shiny app
                         if(event.origin !== "', main_app, '") {
-                            alert("nope")
+                            alert("the event origin was incorrect. Please check your MAIN_SHINY_URL is correct.")
                             return;
                         }
-                        alert(event.data);
                         Shiny.setInputValue("session", event.data);
                     }, false)
                 ')
@@ -28,13 +27,19 @@ ui <- fluidPage(
     # a hidden input, for JavaScript to manipulate and communicate with the R server:
     hidden(passwordInput("session", "session")),
 
+    tags$h1(
+        "TESTING PAGE"
+    ),
+    tags$p(
+        "The iframe below should render the main Shiny app you are testing. Then, that app Should send the request to authenticate via JavaScript. This app will receive the request, look for the correct information in the file system, and then send the POST request back to authenticate."
+    ),
     tags$div(
-        HTML('<iframe src="http://127.0.0.1:7008" id="shiny"
+        HTML(paste0('<iframe src="', Sys.getenv('MAIN_SHINY_URL'), '" id="shiny"
     title="Shiny Dashboard"
     height="1000px"
     width="100%"
     style="border:0"
-     ></iframe>')
+     ></iframe>'))
     )
 )
 
