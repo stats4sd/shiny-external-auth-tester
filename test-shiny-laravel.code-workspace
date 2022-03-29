@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "../vf-shiny-dashboard"
+		},
+		{
+			"path": "."
+		},
+		{
+			"path": "../.sessions"
+		}
+	],
+    "settings": {}
+}

@@ -1,6 +1,7 @@
 library(shiny)
 library(shinyjs)
 library(httr)
+library(dotenv)
 
 main_app <- Sys.getenv("MAIN_SHINY_URL")
 

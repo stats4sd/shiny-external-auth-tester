@@ -19,6 +19,16 @@ git clone ...
 
 3. Run `renv::restore()` to setup the library dependencies for this application.
 
+4. Create the .env file for this test shiny app. Copy the .env.example file and confirm it has the following variables:
+
+```
+MAIN_SHINY_URL="http://127.0.0.1:7008"
+MAIN_SHINY_APP="vf-factory-data-dashboard"
+LARAVEL_APP_URL="http://127.0.0.1:7009"
+```
+
+5. Ensure that the shiny application you wish to test also has a .env file if required.
+
 
 ## How to Run:
 To test your main app responds correctly to the authentication POST requests, you need to run both apps at the same time on different ports. Do the following:
