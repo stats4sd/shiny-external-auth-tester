@@ -8,7 +8,7 @@ This application does the following:
 ## How to setup:
 
 1. Clone this repository alongside the shiny application you wish to test.
- - e.g. if your Shiny application is at `your-user-folder/projects/your-shiny-app`, clone this into `your-user-folder/projects/test-laravel-proxy`:
+ - e.g. if your Shiny application is at `~\projects\your-shiny-app`, clone this into `~\projects\shiny-external-auth-tester`:
  - in Powershell:
 ```
 cd ~
@@ -17,16 +17,28 @@ git clone ...
 
 2. Create a ".sessions" folder in the same projects folder. This will be the folder that your main Shiny app should write session url files to.
 
+You should now have the following folder structure, assuming you're working inside `~\projects\':
+
+ - your-app\ -> contains your main Shiny app
+ - shiny-external-auth-tester\ -> contains this test app
+ - .sessions\ -> is empty (for now)
+
+
 3. Run `renv::restore()` to setup the library dependencies for this application.
 
 4. Create the .env file for this test shiny app. Copy the .env.example file and confirm it has the following variables:
 
 ```
 MAIN_SHINY_URL="http://127.0.0.1:7008"
-LARAVEL_APP_URL="http://127.0.0.1:7009"
+URL="http://127.0.0.1:7009"
 ```
 
-5. Ensure that the shiny application you wish to test also has a .env file if required.
+5. Ensure that the shiny application you wish to test also has a .env file if required. You will likely need to add the following variables to it:
+
+```
+LARAVEL_APP_URL=http://127.0.0.1:7009
+URL=http://127.0.0.1:7008
+```
 
 
 ## How to Run:
