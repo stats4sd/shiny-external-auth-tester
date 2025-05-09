@@ -54,7 +54,11 @@ server <- function(input, output, session) {
             url <- readLines(fileConn)
             print(url)
             ## Always authenticate :)
-            POST(url)
+            POST(url,
+                 body=list(
+                     project_id = 1,
+                     country_id = 1
+                 ),)
 
         }
      })
