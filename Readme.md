@@ -23,7 +23,6 @@ git clone ...
 
 ```
 MAIN_SHINY_URL="http://127.0.0.1:7008"
-MAIN_SHINY_APP="vf-factory-data-dashboard"
 LARAVEL_APP_URL="http://127.0.0.1:7009"
 ```
 
